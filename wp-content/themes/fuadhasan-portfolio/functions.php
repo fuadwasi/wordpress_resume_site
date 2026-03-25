@@ -24,13 +24,15 @@ define( 'FHP_INC',       FHP_DIR  . '/inc' );
    Load modular includes
 ------------------------------------------------------------------ */
 $fhp_includes = [
-    '/helpers.php',           // Utility functions (must load first)
-    '/custom-post-types.php', // Register CPTs + taxonomies
-    '/acf-options.php',       // ACF Options Page
-    '/acf-fields.php',        // ACF field group definitions
-    '/enqueue.php',           // Enqueue CSS & JS
-    '/cv-download.php',       // /download-cv URL handler
-    '/seeder.php',            // Pre-populated CPT content (runs once on activation)
+    '/helpers.php',              // Utility functions (must load first)
+    '/custom-post-types.php',    // Register CPTs + taxonomies
+    '/acf-options.php',          // ACF Options Page
+    '/acf-fields.php',           // ACF field group definitions
+    '/enqueue.php',              // Enqueue CSS & JS
+    '/cv-download.php',          // /download-cv URL handler
+    '/seeder.php',               // Pre-populated CPT content (runs once on activation)
+    '/plugin-compat.php',        // Section 6: plugin integration layer
+    '/recommended-plugins.php',  // Section 6: admin notice for recommended plugins
 ];
 
 foreach ( $fhp_includes as $file ) {
