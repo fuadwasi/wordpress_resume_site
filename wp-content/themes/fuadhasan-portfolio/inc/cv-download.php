@@ -59,17 +59,24 @@ function fhp_handle_cv_download() {
     $attachment_id = $cv_file['ID'] ?? attachment_url_to_postid( $cv_file['url'] );
     $file_path     = get_attached_file( $attachment_id );
 
-    // Double-check it is actually a PDF
+    // Verify the file exists on disk before anything else
+    if ( ! $file_path || ! file_exists( $file_path ) ) {
+        wp_redirect( home_url( '/' ) );
+        exit;
+    }
+
+    // Double-check it is actually a PDF (MIME check must come after existence check)
     $mime = mime_content_type( $file_path );
     if ( $mime !== 'application/pdf' ) {
         wp_redirect( home_url( '/' ) );
         exit;
     }
 
-    if ( ! $file_path || ! file_exists( $file_path ) ) {
-        wp_redirect( home_url( '/' ) );
-        exit;
-    }
+    // Increment the download counter (non-blocking — failure is acceptable)
+    fhp_cv_increment_download_count();
+
+    // Fire action for extensibility (e.g. logging, analytics)
+    do_action( 'fhp_cv_downloaded', $attachment_id );
 
     // Serve the file
     nocache_headers();

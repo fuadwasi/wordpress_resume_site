@@ -29,7 +29,8 @@ $fhp_includes = [
     '/acf-options.php',          // ACF Options Page
     '/acf-fields.php',           // ACF field group definitions
     '/enqueue.php',              // Enqueue CSS & JS
-    '/cv-download.php',          // /download-cv URL handler
+    '/cv-protection.php',        // Section 7: CV upload directory + .htaccess + download counter
+    '/cv-download.php',          // /download-cv URL handler (depends on cv-protection.php)
     '/seeder.php',               // Pre-populated CPT content (runs once on activation)
     '/plugin-compat.php',        // Section 6: plugin integration layer
     '/recommended-plugins.php',  // Section 6: admin notice for recommended plugins
