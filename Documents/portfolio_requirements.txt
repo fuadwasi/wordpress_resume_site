@@ -1,0 +1,121 @@
+PORTFOLIO WEBSITE REQUIREMENTS (WORDPRESS)
+
+1. Project Overview
+Objective:
+Build a high-performance, recruiter-focused personal portfolio website for Fuad Hasan.
+
+Target Audience:
+- Recruiters
+- Hiring managers
+- CTOs / Engineering leads
+- Clients
+
+Core Goals:
+- Strong first impression
+- Easy resume access
+- Structured experience presentation
+- Fully manageable via admin
+
+2. Technology Stack
+- WordPress (latest)
+- PHP 8.x
+- MySQL/MariaDB
+
+Plugins:
+- ACF
+- WPForms / Contact Form 7
+- SEO plugin
+- Cache plugin
+
+3. Pages & Sections
+
+Home:
+- Hero (Name, Title, CTA buttons)
+- Summary
+- Skills
+- Achievements
+- Featured Projects
+
+About:
+- Full summary
+- Career focus
+
+Experience:
+- Company, Role, Duration
+- Contributions
+- Tech stack
+
+Projects:
+- Title
+- Description
+- Tech
+- Links
+
+Skills:
+- Categorized skills
+
+Achievements:
+- Certifications
+- Awards
+
+Contact:
+- Email
+- Phone
+- Links
+- Form
+
+4. CV Download Feature
+
+Frontend:
+- Download CV button
+- Always latest PDF
+
+Backend:
+- Upload/replace CV
+- Set active CV
+
+Implementation:
+Option A:
+- Media library + URL field
+
+Option B:
+- Custom post type (Resume)
+
+5. Admin Panel
+- Edit all sections
+- Upload CV
+- Manage projects
+
+6. Non-Functional Requirements
+- Fast load (<2s)
+- SEO optimized
+- Mobile responsive
+- Secure (HTTPS)
+
+7. UI/UX
+- Clean, modern design
+- Developer-focused
+- Mobile-first
+
+8. Optional Features
+- Blog
+- GitHub integration
+- Dark mode
+- Analytics
+
+9. URL Structure
+/ 
+/about
+/experience
+/projects
+/skills
+/contact
+/download-cv
+
+10. Acceptance Criteria
+- CV downloadable
+- Admin manageable
+- Responsive
+- Fast
+- Professional UI
+
