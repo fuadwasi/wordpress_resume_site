@@ -270,52 +270,8 @@
 
 /* ------------------------------------------------------------------
    EXPERIENCE / TIMELINE
+   (structural overrides — timeline.css holds the core rules)
 ------------------------------------------------------------------ */
-
-.experience-timeline {
-    position: relative;
-    padding-left: 2.5rem;
-}
-
-.experience-timeline::before {
-    content:          '';
-    position:         absolute;
-    left:             0.5rem;
-    top:              0;
-    bottom:           0;
-    width:            2px;
-    background:       linear-gradient(to bottom, var(--color-accent), transparent);
-}
-
-.timeline-item {
-    position:     relative;
-    margin-bottom: var(--spacing-2xl);
-}
-
-.timeline-item__dot {
-    position:      absolute;
-    left:          calc(-2rem);
-    top:           1.5rem;
-    width:         14px;
-    height:        14px;
-    border-radius: 50%;
-    background:    var(--color-bg-secondary);
-    border:        2px solid var(--color-accent);
-    z-index:       1;
-}
-
-.timeline-item--current .timeline-item__dot {
-    background: var(--color-accent);
-}
-
-.timeline-item__dot-pulse {
-    position:      absolute;
-    inset:         -4px;
-    border-radius: 50%;
-    border:        2px solid var(--color-accent);
-    opacity:       0.5;
-    animation:     pulse 2s infinite;
-}
 
 .timeline-item__header { margin-bottom: var(--spacing-md); }
 
@@ -584,3 +540,49 @@
 ------------------------------------------------------------------ */
 
 .site-main { padding-top: 4rem; } /* offset fixed header */
+
+/* ------------------------------------------------------------------
+   SINGLE EXPERIENCE — contribution list
+------------------------------------------------------------------ */
+
+.single-experience__contrib-list {
+    list-style:    none;
+    padding:       0;
+    margin-top:    var(--spacing-md);
+}
+
+.single-experience__contrib-list li {
+    position:      relative;
+    padding-left:  1.5rem;
+    color:         var(--color-text-secondary);
+    font-size:     var(--font-size-sm);
+    margin-bottom: var(--spacing-sm);
+    line-height:   var(--line-height-relaxed);
+}
+
+.single-experience__contrib-list li::before {
+    content:   '▸';
+    position:  absolute;
+    left:      0;
+    color:     var(--color-accent);
+    font-weight: var(--font-weight-bold);
+}
+
+/* ------------------------------------------------------------------
+   HOME CTA SECTION
+------------------------------------------------------------------ */
+
+.home-cta {
+    background: linear-gradient(
+        135deg,
+        rgba(108, 99, 255, 0.07) 0%,
+        var(--color-bg-primary)    50%,
+        rgba(0, 212, 255, 0.05)  100%
+    );
+    border-top:    1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.home-cta .cta-buttons {
+    margin-top: var(--spacing-xl);
+}

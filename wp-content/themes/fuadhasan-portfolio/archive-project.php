@@ -29,11 +29,18 @@ $projects_query = fhp_get_all_projects();
                 <?php esc_html_e( 'All', 'fuadhasan-portfolio' ); ?>
             </button>
             <?php
-            // Build filter list from available project_type values
+            /*
+             * Build the filter list using fhp_field() so the returned value
+             * matches the ACF return_format (label), which is also what
+             * project-card.php stores in data-type via sanitize_title().
+             * Using get_post_meta() directly would return the raw key
+             * (e.g. "b2c_ecommerce") while project-card.php serialises the
+             * display label (e.g. "b2c-ecommerce") — causing filter mismatches.
+             */
             $types = [];
             if ( $projects_query->have_posts() ) {
                 foreach ( $projects_query->posts as $p ) {
-                    $t = get_post_meta( $p->ID, 'project_type', true );
+                    $t = fhp_field( 'project_type', $p->ID );
                     if ( $t && ! in_array( $t, $types, true ) ) {
                         $types[] = $t;
                     }
