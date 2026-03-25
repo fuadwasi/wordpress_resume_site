@@ -30,6 +30,7 @@ $fhp_includes = [
     '/acf-fields.php',        // ACF field group definitions
     '/enqueue.php',           // Enqueue CSS & JS
     '/cv-download.php',       // /download-cv URL handler
+    '/seeder.php',            // Pre-populated CPT content (runs once on activation)
 ];
 
 foreach ( $fhp_includes as $file ) {
