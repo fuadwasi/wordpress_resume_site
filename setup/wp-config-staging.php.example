@@ -1,0 +1,100 @@
+<?php
+/**
+ * WordPress Staging Environment Configuration
+ *
+ * Copy this file to wp-config.php on your staging server and update
+ * all placeholder values before deploying.
+ *
+ * DO NOT commit wp-config.php to version control — it is excluded
+ * from the repository via .gitignore.
+ *
+ * Key differences from production config:
+ *  - WP_DEBUG is ON (errors go to log, not screen)
+ *  - Search engines are discouraged from indexing
+ *  - Use DIFFERENT security keys from production
+ *
+ * See: https://wordpress.org/documentation/article/editing-wp-config-php/
+ *
+ * @package FuadHasanPortfolio
+ * @environment staging
+ */
+
+// -------------------------------------------------------------------------
+// Database — Staging Server
+// -------------------------------------------------------------------------
+define( 'DB_NAME',     'fuad_portfolio_staging' );  // staging database name
+define( 'DB_USER',     'db_user_here' );             // staging database username
+define( 'DB_PASSWORD', 'db_password_here' );         // staging database password
+define( 'DB_HOST',     'localhost' );
+define( 'DB_CHARSET',  'utf8mb4' );
+define( 'DB_COLLATE',  '' );
+
+// -------------------------------------------------------------------------
+// Security Keys & Salts — STAGING SPECIFIC
+// Generate fresh values at: https://api.wordpress.org/secret-key/1.1/salt/
+// Use DIFFERENT keys from production — rotating one environment's keys
+// does not invalidate the other's sessions.
+// -------------------------------------------------------------------------
+define( 'AUTH_KEY',         'put-your-unique-phrase-here' );
+define( 'SECURE_AUTH_KEY',  'put-your-unique-phrase-here' );
+define( 'LOGGED_IN_KEY',    'put-your-unique-phrase-here' );
+define( 'NONCE_KEY',        'put-your-unique-phrase-here' );
+define( 'AUTH_SALT',        'put-your-unique-phrase-here' );
+define( 'SECURE_AUTH_SALT', 'put-your-unique-phrase-here' );
+define( 'LOGGED_IN_SALT',   'put-your-unique-phrase-here' );
+define( 'NONCE_SALT',       'put-your-unique-phrase-here' );
+
+// -------------------------------------------------------------------------
+// Table Prefix
+// -------------------------------------------------------------------------
+$table_prefix = 'fhp_';
+
+// -------------------------------------------------------------------------
+// Staging Site URL — update to your staging subdomain/URL
+// -------------------------------------------------------------------------
+define( 'WP_HOME',    'https://staging.your-domain.com' );
+define( 'WP_SITEURL', 'https://staging.your-domain.com' );
+
+// -------------------------------------------------------------------------
+// Debug Settings — errors logged but NOT displayed publicly
+// -------------------------------------------------------------------------
+define( 'WP_DEBUG',          true  );  // enable error detection
+define( 'WP_DEBUG_LOG',      true  );  // write to wp-content/debug.log
+define( 'WP_DEBUG_DISPLAY',  false );  // NEVER show errors to visitors
+define( 'SCRIPT_DEBUG',      false );  // use minified assets on staging
+
+// -------------------------------------------------------------------------
+// Discourage Search Engine Indexing
+// Prevents staging content from appearing in Google before launch.
+// Also ensure "Discourage search engines" is checked in Settings → Reading.
+// -------------------------------------------------------------------------
+define( 'NOBLOGREDIRECT', '%siteurl%' );
+
+// -------------------------------------------------------------------------
+// Performance
+// -------------------------------------------------------------------------
+define( 'WP_POST_REVISIONS', 10   );
+define( 'AUTOSAVE_INTERVAL', 300  );
+define( 'WP_MEMORY_LIMIT',   '256M' );
+define( 'WP_MAX_MEMORY_LIMIT', '512M' );
+
+// -------------------------------------------------------------------------
+// Optional: Block outbound HTTP requests except for known-good hosts.
+// Uncomment to isolate staging from calling external APIs unintentionally.
+// -------------------------------------------------------------------------
+// define( 'WP_HTTP_BLOCK_EXTERNAL', true );
+// define( 'WP_ACCESSIBLE_HOSTS',
+//     'api.wordpress.org,fonts.googleapis.com,fonts.gstatic.com' );
+
+// -------------------------------------------------------------------------
+// Filesystem — use 'direct' if the web-server user owns the files
+// -------------------------------------------------------------------------
+define( 'FS_METHOD', 'direct' );
+
+// -------------------------------------------------------------------------
+// WordPress Core Path
+// -------------------------------------------------------------------------
+if ( ! defined( 'ABSPATH' ) ) {
+    define( 'ABSPATH', __DIR__ . '/' );
+}
+require_once ABSPATH . 'wp-settings.php';

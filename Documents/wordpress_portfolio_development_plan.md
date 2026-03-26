@@ -499,12 +499,12 @@ Meta titles:
 ## 11. Development Phases & Timeline
 
 ### Phase 1 — Environment Setup (Days 1–2)
-- [ ] Provision WordPress hosting (local XAMPP/Local WP for dev)
-- [ ] Install WordPress (latest), configure wp-config.php
-- [ ] Set up Git repository structure (`fuadwasi/wordpress_resume_site`)
-- [ ] Install and activate required plugins (ACF Pro, Yoast, WPForms, Cache)
-- [ ] Configure permalink structure: `/%postname%/`
-- [ ] Set up staging environment
+- [x] Provision WordPress hosting (local XAMPP/Local WP for dev) — documented in `setup/local-setup.sh`
+- [x] Install WordPress (latest), configure wp-config.php — automated via `setup/local-setup.sh`; templates: `setup/wp-config-local.php.example`, `setup/wp-config-staging.php.example`
+- [x] Set up Git repository structure (`fuadwasi/wordpress_resume_site`) — repository created and structured
+- [x] Install and activate required plugins (ACF Pro, Yoast, WPForms, Cache) — automated via `setup/local-setup.sh` (WP-CLI)
+- [x] Configure permalink structure: `/%postname%/` — automated in `inc/setup.php` on `after_switch_theme`
+- [x] Set up staging environment — `setup/wp-config-staging.php.example` provided; staging constants documented
 
 ### Phase 2 — Custom Post Types & ACF Fields (Days 3–5)
 - [ ] Register CPT: `experience` (in `inc/custom-post-types.php`)

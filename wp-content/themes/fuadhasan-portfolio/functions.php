@@ -29,10 +29,11 @@ $fhp_includes = [
     '/acf-options.php',          // ACF Options Page
     '/acf-fields.php',           // ACF field group definitions
     '/enqueue.php',              // Enqueue CSS & JS
+    '/setup.php',                // Section 11 Phase 1: permalink, pages, site defaults, activation notice
     '/cv-protection.php',        // Section 7: CV upload directory + .htaccess + download counter
     '/cv-download.php',          // /download-cv URL handler (depends on cv-protection.php)
     '/seeder.php',               // Pre-populated CPT content (runs once on activation)
-    '/admin-ui.php',              // Section 8: admin columns, dashboard widget, admin CSS
+    '/admin-ui.php',             // Section 8: admin columns, dashboard widget, admin CSS
     '/plugin-compat.php',        // Section 6: plugin integration layer
     '/recommended-plugins.php',  // Section 6: admin notice for recommended plugins
     '/seo.php',                  // Section 10: schema markup, meta tags, per-page titles
