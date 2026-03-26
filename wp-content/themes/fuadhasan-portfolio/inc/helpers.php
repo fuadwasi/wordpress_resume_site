@@ -293,33 +293,59 @@ function fhp_tech_tags_html( int $post_id ): string {
 ------------------------------------------------------------------ */
 
 /**
- * Output the <title> tag content for the current page.
- * Used as a fallback when Yoast / Rank Math is not active.
+ * Return the <title> tag content for the current page.
  *
- * @return string
+ * Titles match the plan's "Meta titles" spec (Section 10):
+ *   /            → "Fuad Hasan | Senior Software Engineer | NopCommerce Expert"
+ *   /about       → "About Fuad Hasan | ASP.NET Core Developer | Bangladesh"
+ *   /experience  → "Work Experience | Fuad Hasan | Brain Station 23"
+ *   /projects    → "Projects Portfolio | Fuad Hasan | eCommerce & ERP"
+ *   /contact     → "Contact Fuad Hasan | Senior Software Engineer"
+ *
+ * Used as the value returned by the `pre_get_document_title` filter
+ * (in seo.php) so the WordPress core `<title>` tag is always correct,
+ * even without a third-party SEO plugin.
+ *
+ * @return string  Unescaped title string (WordPress escapes it internally).
  */
 function fhp_page_title(): string {
-    $site_name = get_bloginfo( 'name' );
+    $name = fhp_option( 'hero_name', 'Fuad Hasan' );
 
     if ( is_front_page() ) {
-        return esc_html( $site_name ) . ' | Senior Software Engineer | NopCommerce Expert';
+        return $name . ' | Senior Software Engineer | NopCommerce Expert';
     }
 
-    if ( is_post_type_archive( 'experience' ) ) {
-        return 'Work Experience | ' . esc_html( $site_name );
+    if ( is_page( 'about' ) ) {
+        return 'About ' . $name . ' | ASP.NET Core Developer | Bangladesh';
     }
 
-    if ( is_post_type_archive( 'project' ) ) {
-        return 'Projects Portfolio | ' . esc_html( $site_name );
+    if ( is_post_type_archive( 'experience' ) || is_page( 'experience' ) ) {
+        return 'Work Experience | ' . $name . ' | Brain Station 23';
+    }
+
+    if ( is_post_type_archive( 'project' ) || is_page( 'projects' ) ) {
+        return 'Projects Portfolio | ' . $name . ' | eCommerce & ERP';
+    }
+
+    if ( is_page( 'contact' ) ) {
+        return 'Contact ' . $name . ' | Senior Software Engineer';
+    }
+
+    if ( is_page( 'skills' ) ) {
+        return 'Skills | ' . $name . ' | NopCommerce Developer';
+    }
+
+    if ( is_page( 'achievements' ) ) {
+        return 'Achievements | ' . $name;
     }
 
     if ( is_page() ) {
-        return get_the_title() . ' | ' . esc_html( $site_name );
+        return get_the_title() . ' | ' . $name;
     }
 
     if ( is_single() ) {
-        return get_the_title() . ' | ' . esc_html( $site_name );
+        return get_the_title() . ' | ' . $name;
     }
 
-    return esc_html( $site_name );
+    return $name;
 }

@@ -6,11 +6,6 @@
     <meta name="theme-color" content="#0a0a0f">
     <link rel="profile" href="https://gmpg.org/xfn/11">
 
-    <?php if ( ! function_exists( 'yoast_head' ) && ! function_exists( 'rank_math_head' ) ) : ?>
-        <title><?php echo fhp_page_title(); ?></title>
-        <meta name="description" content="<?php bloginfo( 'description' ); ?>">
-    <?php endif; ?>
-
     <?php wp_head(); ?>
 </head>
 

@@ -35,6 +35,8 @@ $fhp_includes = [
     '/admin-ui.php',              // Section 8: admin columns, dashboard widget, admin CSS
     '/plugin-compat.php',        // Section 6: plugin integration layer
     '/recommended-plugins.php',  // Section 6: admin notice for recommended plugins
+    '/seo.php',                  // Section 10: schema markup, meta tags, per-page titles
+    '/performance.php',          // Section 10: resource hints, defer, caching, lazy-load, head cleanup
 ];
 
 foreach ( $fhp_includes as $file ) {
