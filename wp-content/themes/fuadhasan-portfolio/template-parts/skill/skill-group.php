@@ -25,7 +25,7 @@ if ( empty( $skills ) ) {
             $level = (int) get_post_meta( $skill->ID, 'proficiency_level', true );
             $level = ( $level >= 1 && $level <= 5 ) ? $level : 3;
             $pct   = ( $level / 5 ) * 100;
-            $icon  = get_post_meta( $skill->ID, 'skill_icon', true ); // may be an ACF array
+            $icon  = get_post_meta( $skill->ID, 'skill_icon', true ); // ACF image field with return_format='array' → returns array with 'url', 'alt', etc.; plain get_post_meta returns the attachment ID (int) when ACF is inactive
         ?>
         <li class="skill-group__item" data-level="<?php echo esc_attr( $level ); ?>">
             <div class="skill-group__item-header">

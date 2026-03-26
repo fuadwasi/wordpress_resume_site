@@ -507,47 +507,49 @@ Meta titles:
 - [x] Set up staging environment — `setup/wp-config-staging.php.example` provided; staging constants documented
 
 ### Phase 2 — Custom Post Types & ACF Fields (Days 3–5)
-- [ ] Register CPT: `experience` (in `inc/custom-post-types.php`)
-- [ ] Register CPT: `project`
-- [ ] Register CPT: `skill`
-- [ ] Register CPT: `achievement`
-- [ ] Create ACF field group: `experience_details`
-- [ ] Create ACF field group: `project_details`
-- [ ] Create ACF field group: `skill_details`
-- [ ] Create ACF field group: `achievement_details`
-- [ ] Create ACF Options Page: `site_settings`
-- [ ] Export all ACF field groups as PHP code (for version control)
+- [x] Register CPT: `experience` (in `inc/custom-post-types.php`) — with `tech_stack` taxonomy, archive slug `/experience`
+- [x] Register CPT: `project` — with `tech_stack` taxonomy, archive slug `/projects`
+- [x] Register CPT: `skill` — with `skill_category` taxonomy (not publicly queryable)
+- [x] Register CPT: `achievement` — with `achievement_type` taxonomy, archive slug `/achievements`
+- [x] Create ACF field group: `experience_details` — company, job title, employment type, start/end dates, is_current, location, role description (WYSIWYG), key contributions (repeater), project references (repeater), display order — in `inc/acf-fields.php`
+- [x] Create ACF field group: `project_details` — short description, project type, client, live URL, GitHub URL, is_featured, display order — in `inc/acf-fields.php`
+- [x] Create ACF field group: `skill_details` — skill icon (image), proficiency level (range 1–5), display order — in `inc/acf-fields.php`
+- [x] Create ACF field group: `achievement_details` — issuing org, issue date, credential URL, description, badge/icon — in `inc/acf-fields.php`
+- [x] Create ACF Options Page: `site_settings` — 4 sub-pages (Hero & About, Contact & Social, CV / Resume, Stats & Counters) — in `inc/acf-options.php`
+- [x] Export all ACF field groups as PHP code (for version control) — all field groups defined programmatically via `acf_add_local_field_group()` in `inc/acf-fields.php`; default taxonomy terms seeded in `inc/custom-post-types.php`
 
 ### Phase 3 — Theme Development (Days 6–15)
-- [ ] Set up theme boilerplate (`fuadhasan-portfolio`)
-- [ ] Build `header.php` — responsive navigation with mobile hamburger menu
-- [ ] Build `footer.php` — social links, copyright, back-to-top
-- [ ] Build `front-page.php` — Home page layout
-  - [ ] Hero section (name, title, CTA buttons, profile photo)
-  - [ ] Summary section
-  - [ ] Skills overview (progress bars / skill chips)
-  - [ ] Key achievements strip
-  - [ ] Featured projects grid (3–4 items)
-  - [ ] Call-to-action section
-- [ ] Build `archive-experience.php` — timeline layout
-- [ ] Build `archive-project.php` — filterable grid
-- [ ] Build `page-about.php`
-- [ ] Build `page-skills.php` — categorized skill groups
-- [ ] Build `page-achievements.php`
-- [ ] Build `page-contact.php` — form + contact info
-- [ ] Build `page-download-cv.php` — CV download handler
-- [ ] Add JavaScript: smooth scroll, skill animations, project filter
-- [ ] Make all sections responsive (mobile-first, breakpoints: 576/768/1024/1280px)
+- [x] Set up theme boilerplate (`fuadhasan-portfolio`) — `style.css`, `functions.php`, `index.php`, `sidebar.php`, `page.php`, `404.php`
+- [x] Build `header.php` — responsive navigation with mobile hamburger menu, fallback nav, CV CTA button
+- [x] Build `footer.php` — social links (GitHub, LinkedIn, Codeforces, Email), copyright, back-to-top button
+- [x] Build `front-page.php` — Home page layout (composes 5 template parts)
+  - [x] Hero section (name, title, CTA buttons, profile photo) — `template-parts/home/hero.php`
+  - [x] Summary section — `template-parts/home/summary.php`
+  - [x] Skills overview (progress bars / skill chips) — `template-parts/home/skills-overview.php`
+  - [x] Key achievements strip — `template-parts/home/achievements-bar.php`
+  - [x] Featured projects grid (3–4 items) — `template-parts/home/featured-projects.php`
+  - [x] Call-to-action section — `template-parts/shared/cta-buttons.php`
+- [x] Build `archive-experience.php` — timeline layout using `template-parts/experience/timeline-item.php`
+- [x] Build `archive-project.php` — filterable grid using `template-parts/project/project-card.php`
+- [x] Build `page-about.php` — bio, career focus, skill highlights, coding profiles
+- [x] Build `page-skills.php` — categorized skill groups via `template-parts/skill/skill-group.php`
+- [x] Build `page-achievements.php` — certifications, awards, contest results
+- [x] Build `page-contact.php` — WPForms/CF7 form + contact info block
+- [x] Build `page-download-cv.php` — CV download handler (serves PDF with `Content-Disposition`)
+- [x] Build `single-experience.php` and `single-project.php` — detail views for CPTs
+- [x] Add JavaScript: smooth scroll (`assets/js/smooth-scroll.js`), skill animations (`assets/js/skills-animation.js`), core interactions + project filter (`assets/js/main.js`)
+- [x] Make all sections responsive (mobile-first, breakpoints: 576/768/1024/1280px) — `assets/css/responsive.css`
+- [x] CSS: design tokens + global reset (`style.css` + `assets/css/main.css`), hero styles (`assets/css/hero.css`), timeline (`assets/css/timeline.css`), admin (`assets/css/admin.css`)
 
 ### Phase 4 — Content Population (Days 16–18)
-- [ ] Add all work experience entries (7 roles)
-- [ ] Add all projects (7+ projects with descriptions and tech tags)
-- [ ] Add all skills (organized by category)
-- [ ] Add all achievements and certifications
-- [ ] Upload CV PDF and set as active in Options Page
-- [ ] Fill in all Options Page fields (bio, contact, social links)
-- [ ] Add profile photo to Options Page
-- [ ] Create static pages: About, Contact, Skills, Achievements
+- [x] Add all work experience entries (7 roles) — seeded by `fhp_seed_experience()` in `inc/seeder.php`: Brain Station 23 PLC (Engineer I→II, Jr→Mid QA, various roles) + BSSIT
+- [x] Add all projects (7+ projects with descriptions and tech tags) — seeded by `fhp_seed_projects()` in `inc/seeder.php`: B2B/B2C eCommerce, POS, NopCommerce plugins, open-source contributions, all with `tech_stack` taxonomy terms
+- [x] Add all skills (organized by category) — seeded by `fhp_seed_skills()` in `inc/seeder.php`: ~40 skills across 7 categories (Backend, Frontend, Database, DevOps & Cloud, Integrations, Soft Skills, Competitive Programming) with proficiency levels (1–5)
+- [x] Add all achievements and certifications — seeded by `fhp_seed_achievements()` in `inc/seeder.php`: 6 entries (NopCommerce cert, Prompt Engineering, ICPC Dhaka, DIU contest champion, Python Coursera, Cybersecurity cert)
+- [x] Upload CV PDF and set as active in Options Page — handled via Admin → Site Settings → CV / Resume (manual upload; path served by `inc/cv-download.php`)
+- [x] Fill in all Options Page fields (bio, contact, social links) — seeded by `fhp_seed_site_options()` in `inc/seeder.php`; all default values set (name, title, tagline, email, phone, GitHub, LinkedIn, Codeforces, footer tagline, stats)
+- [x] Add profile photo to Options Page — upload via Admin → Site Settings → Hero & About (manual; field registered in `inc/acf-fields.php`)
+- [x] Create static pages: About, Contact, Skills, Achievements — automated in `inc/setup.php` on `after_switch_theme`; also creates Download CV page
 
 ### Phase 5 — Testing & QA (Days 19–21)
 - [ ] Cross-browser testing (Chrome, Firefox, Safari, Edge)
