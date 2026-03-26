@@ -1,13 +1,15 @@
 <?php
 /**
- * Content Seeder — Pre-populated CPT Data
+ * Content Seeder — Pre-populated CPT Data & Site Options
  *
  * Creates all pre-defined content entries for the four Custom Post Types
- * when the theme is first activated.  The seeder is **idempotent**:
+ * and seeds the ACF Options Page values when the theme is first activated.
+ * The seeder is **idempotent**:
  *   - A single option flag (`fhp_seeded`) prevents re-running.
- *   - Each insert is also guarded by a title+post-type existence check.
+ *   - Each CPT insert is also guarded by a title+post-type existence check.
  *
- * Data seeded (mirrors the plan, Section 4):
+ * Data seeded (mirrors the plan, Sections 4 & 9):
+ *   9.0  Site Options — personal info, professional summary, stats
  *   4.1  7 Work Experience entries — Brain Station 23 PLC & BSSIT
  *   4.2  7 Project entries
  *   4.3  ~40 Skill entries across 7 skill_category terms
@@ -36,6 +38,7 @@ function fhp_seed_content(): void {
         return; // Already seeded — nothing to do.
     }
 
+    fhp_seed_site_options();
     fhp_seed_experience();
     fhp_seed_projects();
     fhp_seed_skills();
@@ -91,6 +94,29 @@ function fhp_set_field( string $field_name, $value, int $post_id ): void {
         update_field( $field_name, $value, $post_id );
     } else {
         update_post_meta( $post_id, $field_name, $value );
+    }
+}
+
+/**
+ * Write a value to an ACF Options Page field.
+ *
+ * When ACF Pro is active, uses update_field() with 'option' as the
+ * object ID, which stores the value as `options_{field_name}` in
+ * wp_options and writes the field-key reference needed for ACF to
+ * recognise the value.
+ *
+ * When ACF is absent (e.g. plain WordPress), falls back to
+ * update_option( "options_{field_name}", $value ) which matches the
+ * exact key ACF would use, allowing seamless ACF activation later.
+ *
+ * @param string $field_name  The ACF field name (slug), e.g. 'hero_name'.
+ * @param mixed  $value       The value to store.
+ */
+function fhp_set_option_field( string $field_name, $value ): void {
+    if ( function_exists( 'update_field' ) ) {
+        update_field( $field_name, $value, 'option' );
+    } else {
+        update_option( 'options_' . $field_name, $value );
     }
 }
 
@@ -156,6 +182,83 @@ function fhp_assign_achievement_type( int $post_id, string $type_name ): void {
         $term_id = $term->term_id;
     }
     wp_set_object_terms( $post_id, [ $term_id ], 'achievement_type' );
+}
+
+/* ====================================================================
+   9.0  SITE OPTIONS — Personal Information, Summary & Stats
+==================================================================== */
+
+/**
+ * Seed all ACF Options Page values from the Content Migration Plan
+ * (Section 9 of wordpress_portfolio_development_plan.md).
+ *
+ * Groups seeded:
+ *   Hero & About     → hero_name, hero_title, hero_subtitle, about_summary
+ *   Contact & Social → email_address, phone_number, location, github_url,
+ *                      linkedin_url, codeforces_url, footer_tagline
+ *   CV / Resume      → cv_download_label
+ *   Stats & Counters → years_of_experience, total_projects,
+ *                      open_source_contributions
+ *
+ * Image fields (profile_photo, hero_background_image, active_cv_file) are
+ * intentionally skipped — they require a file upload and cannot be seeded
+ * from code without a binary asset.
+ */
+function fhp_seed_site_options(): void {
+
+    // ----------------------------------------------------------------
+    // Hero & About
+    // ----------------------------------------------------------------
+
+    fhp_set_option_field( 'hero_name',  'Fuad Hasan' );
+    fhp_set_option_field( 'hero_title', 'Senior Software Engineer II' );
+    fhp_set_option_field( 'hero_subtitle',
+        'Certified NopCommerce Developer · ASP.NET Core · Microservices · B2B & B2C eCommerce'
+    );
+
+    // Full professional summary with key achievements — stored as HTML
+    // so the wysiwyg field renders it correctly.
+    fhp_set_option_field( 'about_summary', wp_kses_post(
+        '<p>Certified NopCommerce Developer and Senior Software Engineer with 3+ years of experience ' .
+        'designing and scaling B2B &amp; B2C eCommerce platforms, ERP integrations, and enterprise-grade ' .
+        'plugins. Skilled in ASP.NET Core, C#, and modern microservices architecture, I help businesses ' .
+        'improve operations and customer experience through robust, future-ready solutions.</p>' .
+        '<h3>Key Achievements</h3>' .
+        '<ul>' .
+        '<li>Integrated SAP ERP for Macsteel — real-time sync across 10,000+ SKUs.</li>' .
+        '<li>Led POS system development now deployed in 50+ retail stores.</li>' .
+        '<li>NopCommerce core contributor: Facebook auth, MFA, discount management.</li>' .
+        '<li>Built Shawpno microservices platform — 30% checkout latency reduction.</li>' .
+        '<li>ICPC Dhaka Regional Contestant (Rank 96 / 300).</li>' .
+        '<li>DIU Take-Off Programming Contest Champion (Rank 1 / 300).</li>' .
+        '</ul>'
+    ) );
+
+    // ----------------------------------------------------------------
+    // Contact & Social
+    // ----------------------------------------------------------------
+
+    fhp_set_option_field( 'email_address',   'fhassanwasi@gmail.com' );
+    fhp_set_option_field( 'phone_number',    '+880 01792 478 378' );
+    fhp_set_option_field( 'location',        'Dhaka, Bangladesh' );
+    fhp_set_option_field( 'github_url',      'https://github.com/fuadwasi' );
+    fhp_set_option_field( 'linkedin_url',    'https://www.linkedin.com/in/fuadwasi/' );
+    fhp_set_option_field( 'codeforces_url',  'https://codeforces.com/profile/fhwasi' );
+    fhp_set_option_field( 'footer_tagline',  'Building scalable eCommerce solutions, one commit at a time.' );
+
+    // ----------------------------------------------------------------
+    // CV / Resume
+    // ----------------------------------------------------------------
+
+    fhp_set_option_field( 'cv_download_label', 'Download CV' );
+
+    // ----------------------------------------------------------------
+    // Stats & Counters
+    // ----------------------------------------------------------------
+
+    fhp_set_option_field( 'years_of_experience',       5 );
+    fhp_set_option_field( 'total_projects',            20 );
+    fhp_set_option_field( 'open_source_contributions', 50 );
 }
 
 /* ====================================================================
