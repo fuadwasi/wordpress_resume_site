@@ -32,6 +32,7 @@ $fhp_includes = [
     '/cv-protection.php',        // Section 7: CV upload directory + .htaccess + download counter
     '/cv-download.php',          // /download-cv URL handler (depends on cv-protection.php)
     '/seeder.php',               // Pre-populated CPT content (runs once on activation)
+    '/admin-ui.php',              // Section 8: admin columns, dashboard widget, admin CSS
     '/plugin-compat.php',        // Section 6: plugin integration layer
     '/recommended-plugins.php',  // Section 6: admin notice for recommended plugins
 ];
