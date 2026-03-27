@@ -1,0 +1,266 @@
+/*
+Theme Name: Fuad Hasan Portfolio
+Theme URI: https://github.com/fuadwasi/wordpress_resume_site
+Author: Fuad Hasan
+Author URI: https://github.com/fuadwasi
+Description: A high-performance, recruiter-focused personal portfolio WordPress theme for Fuad Hasan. Features a clean modern design with sections for experience, projects, skills, achievements, and a CV download feature.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: fuadhasan-portfolio
+Tags: portfolio, resume, one-page, responsive, custom-colors, custom-menu, featured-images
+*/
+
+/* ==========================================================================
+   Reset & Base
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-primary:    #0a66c2;
+  --color-secondary:  #00bcd4;
+  --color-dark:       #0d1117;
+  --color-darker:     #161b22;
+  --color-card:       #1c2128;
+  --color-border:     #30363d;
+  --color-text:       #e6edf3;
+  --color-muted:      #8b949e;
+  --color-accent:     #58a6ff;
+  --font-sans:        'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono:        'Fira Code', 'Courier New', monospace;
+  --radius:           8px;
+  --transition:       0.3s ease;
+  --max-width:        1200px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-dark);
+  color: var(--color-text);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+a { color: var(--color-accent); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--color-secondary); }
+
+img { max-width: 100%; height: auto; display: block; }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13, 17, 23, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+  padding: 1rem 0;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.site-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.5px;
+}
+
+.site-logo span { color: var(--color-accent); }
+
+.primary-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.primary-nav a {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.primary-nav a:hover { color: var(--color-text); }
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-darker) 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 0 4rem;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at center, rgba(10, 102, 194, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content { position: relative; z-index: 1; }
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(88, 166, 255, 0.1);
+  border: 1px solid rgba(88, 166, 255, 0.2);
+  color: var(--color-accent);
+  padding: 0.35rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  margin-bottom: 0.5rem;
+}
+
+.hero h1 span { color: var(--color-accent); }
+
+.hero-title {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: var(--color-secondary);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  color: var(--color-muted);
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  border: none;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn-primary:hover { background: #0856a8; color: #fff; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(10, 102, 194, 0.35); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+.btn-outline:hover { border-color: var(--color-accent); color: var(--color-accent); transform: translateY(-2px); }
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+.section { padding: 5rem 0; }
+.section-alt { background: var(--color-darker); }
+
+.section-header { text-align: center; margin-bottom: 3.5rem; }
+.section-label {
+  display: inline-block;
+  color: var(--color-accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+.section-subtitle { color: var(--color-muted); max-width: 600px; margin: 0 auto; font-size: 1.05rem; }
+
+/* Card */
+.card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  transition: border-color var(--transition), transform var(--transition);
+}
+.card:hover { border-color: rgba(88, 166, 255, 0.3); transform: translateY(-3px); }
+
+/* Grid */
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  background: var(--color-darker);
+  border-top: 1px solid var(--color-border);
+  padding: 2.5rem 0;
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+.site-footer a { color: var(--color-accent); }
+.site-footer a:hover { color: var(--color-secondary); }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 768px) {
+  .primary-nav ul { gap: 1rem; }
+  .hero-actions { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .primary-nav { display: none; }
+}

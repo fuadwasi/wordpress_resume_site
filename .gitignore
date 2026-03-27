@@ -39,7 +39,7 @@ wp-config.php
 #
 # Note: If you wish to whitelist plugins,
 # uncomment the next line
-#/wp-content/plugins
+/wp-content/plugins/
 
 # All themes
 #
@@ -47,3 +47,9 @@ wp-config.php
 # uncomment the next line
 #/wp-content/themes
 .vs/*
+
+# Local environment file (contains DB credentials)
+.env
+
+# Docker volumes / data
+docker-data/
