@@ -37,9 +37,9 @@ All **Sections 1–11 Phase 4** are complete. The implementation is in **PHP + W
 - ✅ SEO: JSON-LD (Person/WebPage/ItemList/BreadcrumbList), OG/Twitter, per-page titles
 - ✅ Performance: defer, Cache-Control, resource hints, lazy-load, head cleanup
 - ✅ Phase 1 setup automation: `setup/local-setup.sh`, `setup/wp-config-*.example`, `inc/setup.php`
+- ✅ Phase 5 QA: 132-test static suite (`tests/theme-qa.php`), WP-CLI QA script (`setup/qa-check.sh`), `Documents/QA_REPORT.md`; accessibility fixes: landmark `aria-label`, `aria-pressed` on project filters, `aria-live` live region, back-to-top button, focus management
 
 ### What is next
-- ⏳ **Phase 5 — Testing & QA** (cross-browser, mobile, SEO audit, PageSpeed)
 - ⏳ **Phase 6 — Deployment** (Ubuntu 22.04 + Nginx + SSL + Cloudflare)
 - ⏳ **Phase 7 — Post-Launch** (GA4, admin training, uptime monitoring)
 

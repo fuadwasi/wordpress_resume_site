@@ -73,7 +73,7 @@ function fhp_experience_column_content( string $column, int $post_id ): void {
 
         case 'fhp_current':
             $is_current = get_post_meta( $post_id, 'is_current', true );
-            echo $is_current
+            echo $is_current // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- hardcoded HTML, ternary on a boolean
                 ? '<span class="fhp-badge fhp-badge--yes" aria-label="' . esc_attr__( 'Current position', 'fuadhasan-portfolio' ) . '">&#10003;</span>'
                 : '<span class="fhp-badge fhp-badge--no" aria-label="' . esc_attr__( 'Past position', 'fuadhasan-portfolio' ) . '">—</span>';
             break;
@@ -136,7 +136,7 @@ function fhp_project_column_content( string $column, int $post_id ): void {
     switch ( $column ) {
         case 'fhp_featured':
             $featured = get_post_meta( $post_id, 'is_featured', true );
-            echo $featured
+            echo $featured // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- hardcoded HTML, ternary on a boolean
                 ? '<span class="fhp-badge fhp-badge--yes fhp-star" aria-label="' . esc_attr__( 'Featured project', 'fuadhasan-portfolio' ) . '">&#9733;</span>'
                 : '<span class="fhp-badge fhp-badge--no" aria-label="' . esc_attr__( 'Not featured', 'fuadhasan-portfolio' ) . '">—</span>';
             break;

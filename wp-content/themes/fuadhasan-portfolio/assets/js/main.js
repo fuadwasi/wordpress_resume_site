@@ -36,6 +36,11 @@
             const isOpen = siteNav.classList.toggle('is-open');
             navToggle.setAttribute('aria-expanded', String(isOpen));
             document.body.style.overflow = isOpen ? 'hidden' : '';
+            // Move focus to first nav link when menu opens
+            if (isOpen) {
+                const firstLink = siteNav.querySelector('a');
+                if (firstLink) firstLink.focus();
+            }
         });
 
         // Close nav when a link is clicked
@@ -90,22 +95,35 @@
     const projectGrid = document.getElementById('projects-grid');
 
     if (filterBtns.length && projectGrid) {
+        const filterStatus = document.getElementById('projects-filter-status');
+
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 const filter = btn.dataset.filter;
 
-                // Update active state
-                filterBtns.forEach(b => b.classList.remove('is-active'));
+                // Update active state and aria-pressed
+                filterBtns.forEach(b => {
+                    b.classList.remove('is-active');
+                    b.setAttribute('aria-pressed', 'false');
+                });
                 btn.classList.add('is-active');
+                btn.setAttribute('aria-pressed', 'true');
 
                 // Show/hide cards
+                let visibleCount = 0;
                 projectGrid.querySelectorAll('[data-type]').forEach(card => {
                     if (filter === 'all' || card.dataset.type === filter) {
                         card.classList.remove('is-hidden');
+                        visibleCount++;
                     } else {
                         card.classList.add('is-hidden');
                     }
                 });
+
+                // Announce result count to screen readers
+                if (filterStatus) {
+                    filterStatus.textContent = visibleCount + (visibleCount === 1 ? ' project shown' : ' projects shown');
+                }
             });
         });
     }
@@ -128,6 +146,29 @@
         animateEls.forEach(el => {
             el.style.animationPlayState = 'paused';
             observer.observe(el);
+        });
+    }
+
+    /* ----------------------------------------------------------------
+       Back to top button
+    ---------------------------------------------------------------- */
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (backToTopBtn) {
+        const toggleVisibility = () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.removeAttribute('hidden');
+            } else {
+                backToTopBtn.setAttribute('hidden', '');
+            }
+        };
+        window.addEventListener('scroll', toggleVisibility, { passive: true });
+        toggleVisibility();
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Return focus to skip link for keyboard users
+            const skipLink = document.querySelector('.skip-link');
+            if (skipLink) skipLink.focus();
         });
     }
 

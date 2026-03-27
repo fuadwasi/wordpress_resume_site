@@ -15,7 +15,7 @@ get_header();
 $skills_by_cat = fhp_get_skills_by_category();
 ?>
 
-<section class="section section--dark skills-page">
+<section class="section section--dark skills-page" aria-label="<?php esc_attr_e( 'Skills & Technologies', 'fuadhasan-portfolio' ); ?>">
     <div class="container">
 
         <?php get_template_part( 'template-parts/shared/section-header', null, [

@@ -8,7 +8,7 @@ defined( 'ABSPATH' ) || exit;
 get_header();
 ?>
 
-<section class="section section--dark">
+<section class="section section--dark" aria-label="<?php esc_attr_e( 'Page Not Found', 'fuadhasan-portfolio' ); ?>">
     <div class="container flex-center" style="flex-direction:column; min-height:60vh; text-align:center; gap:2rem;">
 
         <div class="text-mono text-accent" style="font-size:clamp(4rem,12vw,8rem); font-weight:700; line-height:1;">

@@ -25,7 +25,7 @@ $projects_query = fhp_get_all_projects();
 
         <!-- Project type filter buttons -->
         <div class="projects-filter" role="group" aria-label="<?php esc_attr_e( 'Filter projects by type', 'fuadhasan-portfolio' ); ?>">
-            <button class="btn btn--outline btn--sm projects-filter__btn is-active" data-filter="all">
+            <button class="btn btn--outline btn--sm projects-filter__btn is-active" data-filter="all" aria-pressed="true">
                 <?php esc_html_e( 'All', 'fuadhasan-portfolio' ); ?>
             </button>
             <?php
@@ -49,11 +49,15 @@ $projects_query = fhp_get_all_projects();
             foreach ( $types as $type ) :
             ?>
             <button class="btn btn--outline btn--sm projects-filter__btn"
-                    data-filter="<?php echo esc_attr( sanitize_title( $type ) ); ?>">
+                    data-filter="<?php echo esc_attr( sanitize_title( $type ) ); ?>"
+                    aria-pressed="false">
                 <?php echo esc_html( $type ); ?>
             </button>
             <?php endforeach; ?>
         </div>
+
+        <!-- Live region: announces visible project count to screen readers -->
+        <p class="sr-only" id="projects-filter-status" aria-live="polite" aria-atomic="true"></p>
 
         <!-- Projects grid -->
         <?php if ( $projects_query->have_posts() ) : ?>

@@ -24,7 +24,7 @@ $github  = fhp_option( 'github_url',   'https://github.com/fuadwasi' );
 $linkedin = fhp_option( 'linkedin_url', 'https://www.linkedin.com/in/fuadwasi/' );
 ?>
 
-<section class="section section--dark contact-page">
+<section class="section section--dark contact-page" aria-label="<?php esc_attr_e( 'Contact', 'fuadhasan-portfolio' ); ?>">
     <div class="container">
 
         <?php get_template_part( 'template-parts/shared/section-header', null, [

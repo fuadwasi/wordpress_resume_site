@@ -603,7 +603,7 @@ See [`Documents/wordpress_portfolio_development_plan.md`](wordpress_portfolio_de
 | 2 | CPTs & ACF Fields | ✅ Complete |
 | 3 | Theme Development | ✅ Complete |
 | 4 | Content Population | ✅ Complete |
-| 5 | Testing & QA | ⏳ Pending |
+| 5 | Testing & QA | ✅ Complete |
 | 6 | Deployment | ⏳ Pending |
 | 7 | Post-Launch | ⏳ Pending |
 

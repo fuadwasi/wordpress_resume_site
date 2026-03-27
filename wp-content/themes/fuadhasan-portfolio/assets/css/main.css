@@ -586,3 +586,44 @@
 .home-cta .cta-buttons {
     margin-top: var(--spacing-xl);
 }
+
+/* ------------------------------------------------------------------
+   BACK TO TOP BUTTON
+------------------------------------------------------------------ */
+
+.back-to-top {
+    position: fixed;
+    bottom: var(--spacing-xl);
+    right: var(--spacing-xl);
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--color-accent);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(108, 99, 255, 0.4);
+    transition: background var(--transition-base), transform var(--transition-base), opacity var(--transition-base);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.back-to-top:not([hidden]) {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+    background: var(--color-accent-hover);
+    transform: translateY(-3px);
+}
+
+.back-to-top:focus-visible {
+    outline: 2px solid var(--color-accent-secondary);
+    outline-offset: 3px;
+}

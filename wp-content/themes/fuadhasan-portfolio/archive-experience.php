@@ -13,7 +13,7 @@ get_header();
 $experience_query = fhp_get_experience_query();
 ?>
 
-<section class="section section--dark">
+<section class="section section--dark" aria-label="<?php esc_attr_e( 'Work Experience', 'fuadhasan-portfolio' ); ?>">
     <div class="container">
 
         <?php get_template_part( 'template-parts/shared/section-header', null, [

@@ -89,6 +89,13 @@
 
 </footer><!-- .site-footer -->
 
+<!-- Back to top button -->
+<button class="back-to-top" id="back-to-top" aria-label="<?php esc_attr_e( 'Back to top', 'fuadhasan-portfolio' ); ?>" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <path d="m18 15-6-6-6 6"/>
+    </svg>
+</button>
+
 <?php wp_footer(); ?>
 </body>
 </html>
