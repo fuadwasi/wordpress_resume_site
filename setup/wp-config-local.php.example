@@ -1,0 +1,90 @@
+<?php
+/**
+ * WordPress Local Development Configuration
+ *
+ * Copy this file to wp-config.php in your WordPress root and update
+ * the database credentials to match your local environment.
+ *
+ * DO NOT commit wp-config.php to version control — it is excluded
+ * from the repository via .gitignore.
+ *
+ * See: https://wordpress.org/documentation/article/editing-wp-config-php/
+ *
+ * @package FuadHasanPortfolio
+ * @environment local-development
+ */
+
+// -------------------------------------------------------------------------
+// Database — Local Development
+// -------------------------------------------------------------------------
+define( 'DB_NAME',     'fuad_portfolio_dev' );  // your local database name
+define( 'DB_USER',     'root' );                // your database username
+define( 'DB_PASSWORD', '' );                    // your database password
+define( 'DB_HOST',     'localhost' );           // usually localhost
+define( 'DB_CHARSET',  'utf8mb4' );
+define( 'DB_COLLATE',  '' );
+
+// -------------------------------------------------------------------------
+// Security Keys & Salts
+// Generate fresh values at: https://api.wordpress.org/secret-key/1.1/salt/
+// Replace ALL lines below with the output from that URL.
+// -------------------------------------------------------------------------
+define( 'AUTH_KEY',         'put-your-unique-phrase-here' );
+define( 'SECURE_AUTH_KEY',  'put-your-unique-phrase-here' );
+define( 'LOGGED_IN_KEY',    'put-your-unique-phrase-here' );
+define( 'NONCE_KEY',        'put-your-unique-phrase-here' );
+define( 'AUTH_SALT',        'put-your-unique-phrase-here' );
+define( 'SECURE_AUTH_SALT', 'put-your-unique-phrase-here' );
+define( 'LOGGED_IN_SALT',   'put-your-unique-phrase-here' );
+define( 'NONCE_SALT',       'put-your-unique-phrase-here' );
+
+// -------------------------------------------------------------------------
+// Table Prefix
+// Using a non-default prefix reduces risk from automated SQL injection
+// targeting the default wp_ prefix.
+// -------------------------------------------------------------------------
+$table_prefix = 'fhp_';
+
+// -------------------------------------------------------------------------
+// Local Site URLs — update to match your local server path
+// -------------------------------------------------------------------------
+define( 'WP_HOME',    'http://localhost/fuad-portfolio' );
+define( 'WP_SITEURL', 'http://localhost/fuad-portfolio' );
+
+// -------------------------------------------------------------------------
+// Debug Settings — safe to enable in local dev; NEVER enable in production
+// -------------------------------------------------------------------------
+define( 'WP_DEBUG',          true  );  // display + log PHP errors
+define( 'WP_DEBUG_LOG',      true  );  // write errors to wp-content/debug.log
+define( 'WP_DEBUG_DISPLAY',  true  );  // show errors on screen (local only)
+define( 'SCRIPT_DEBUG',      true  );  // load unminified JS/CSS for debugging
+define( 'SAVEQUERIES',       true  );  // record DB queries — view with Query Monitor
+
+// -------------------------------------------------------------------------
+// Performance / Maintenance
+// -------------------------------------------------------------------------
+define( 'WP_POST_REVISIONS', 5    );  // limit stored post revisions
+define( 'AUTOSAVE_INTERVAL', 300  );  // autosave every 5 min (default 60 s)
+define( 'EMPTY_TRASH_DAYS',  7    );  // trash purged after 7 days
+define( 'WP_MEMORY_LIMIT',   '256M' ); // memory for front-end
+define( 'WP_MAX_MEMORY_LIMIT', '512M' ); // memory for admin
+
+// -------------------------------------------------------------------------
+// Discourage search engines from indexing the local environment
+// -------------------------------------------------------------------------
+// WordPress will also set "Discourage search engines" in Settings → Reading
+// when you check that option; this constant reinforces it at the code level.
+// define( 'NOBLOGREDIRECT', '%siteurl%' );
+
+// -------------------------------------------------------------------------
+// Filesystem — use 'direct' to avoid FTP prompts in local dev
+// -------------------------------------------------------------------------
+define( 'FS_METHOD', 'direct' );
+
+// -------------------------------------------------------------------------
+// WordPress Core Path
+// -------------------------------------------------------------------------
+if ( ! defined( 'ABSPATH' ) ) {
+    define( 'ABSPATH', __DIR__ . '/' );
+}
+require_once ABSPATH . 'wp-settings.php';

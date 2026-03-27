@@ -17,8 +17,15 @@
 /wp-*.php
 /xmlrpc.php
 
-# Configuration
+# Configuration � environment-specific files that must never be committed
 wp-config.php
+wp-config-local.php
+wp-config-staging.php
+wp-config-production.php
+.env
+.env.local
+.env.staging
+.env.production
 
 # Example themes
 /wp-content/themes/twenty*/
@@ -31,8 +38,9 @@ wp-config.php
 
 # Log files
 *.log
+/wp-content/debug.log
 
-# htaccess
+# htaccess (server-generated / environment-specific)
 /.htaccess
 
 # All plugins
@@ -46,4 +54,16 @@ wp-config.php
 # Note: If you wish to whitelist themes,
 # uncomment the next line
 #/wp-content/themes
+
+# Whitelist the custom portfolio theme
+!/wp-content/themes/fuadhasan-portfolio/
+
+# OS / editor artefacts
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
 .vs/*
+.vs/

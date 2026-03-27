@@ -1,0 +1,181 @@
+/* ==========================================================================
+   responsive.css — Mobile-first breakpoint overrides
+   Breakpoints: 576px (xs), 768px (sm), 1024px (md), 1280px (lg)
+   ========================================================================== */
+
+/* ------------------------------------------------------------------
+   <= 1023px (tablet + large phone landscape)
+------------------------------------------------------------------ */
+@media (max-width: 1023px) {
+
+    /* Hero */
+    .hero__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+    }
+
+    .hero__photo { display: none; } /* hide photo on tablet to save space */
+
+    .hero__subtitle { margin-inline: auto; }
+
+    .hero__cta { justify-content: center; }
+
+    .hero__stats { justify-content: center; }
+
+    /* About */
+    .about-hero__grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .about-hero__photo {
+        max-width: 280px;
+        margin-inline: auto;
+    }
+
+    /* Summary */
+    .summary-section__grid { grid-template-columns: 1fr; }
+
+    /* Contact */
+    .contact-page__grid { grid-template-columns: 1fr; }
+
+    /* Footer */
+    .site-footer__inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xl);
+    }
+
+    /* Featured projects */
+    .featured-projects .grid-2 { grid-template-columns: 1fr; }
+}
+
+/* ------------------------------------------------------------------
+   <= 768px (tablet portrait)
+------------------------------------------------------------------ */
+@media (max-width: 768px) {
+
+    /* Header */
+    .site-nav {
+        position:   fixed;
+        top:        4rem;
+        left:       0;
+        right:      0;
+        background: rgba(10, 10, 15, 0.98);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--color-border);
+        padding:    var(--spacing-lg);
+        transform:  translateY(-110%);
+        transition: transform var(--transition-normal);
+        z-index:    var(--z-sticky);
+    }
+
+    .site-nav.is-open { transform: translateY(0); }
+
+    .site-nav__list {
+        flex-direction: column;
+        align-items:    flex-start;
+        gap:            var(--spacing-xs);
+    }
+
+    .site-nav__link {
+        padding:   0.75rem 1rem;
+        font-size: var(--font-size-md);
+        width:     100%;
+    }
+
+    .site-header__cta { display: none; }
+
+    .site-header__hamburger { display: flex; }
+
+    /* Timeline */
+    .experience-timeline {
+        padding-left: 2rem;
+    }
+
+    .timeline-item__dot {
+        left: calc(-1.75rem);
+    }
+
+    /* Skills grid */
+    .skills-page__grid { grid-template-columns: 1fr; }
+
+    /* Achievements */
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+
+    /* Hero stats */
+    .hero__stats { gap: var(--spacing-lg); }
+
+    .hero__stat-divider { display: none; }
+
+    /* Section header */
+    .section-header__heading { font-size: 1.75rem; }
+
+    /* Photo frame */
+    .hero__photo-frame { width: 260px; height: 260px; }
+}
+
+/* ------------------------------------------------------------------
+   <= 576px (small phones)
+------------------------------------------------------------------ */
+@media (max-width: 576px) {
+
+    :root {
+        --spacing-section: 3.5rem;
+    }
+
+    /* Hero */
+    .hero__name { font-size: 2.5rem; }
+
+    .hero__stats {
+        flex-direction: column;
+        align-items:    flex-start;
+        gap:            var(--spacing-md);
+    }
+
+    /* Projects filter */
+    .projects-filter { flex-wrap: wrap; gap: var(--spacing-xs); }
+
+    /* Grids collapse to 1 column */
+    .grid-4,
+    .grid-3,
+    .grid-2 { grid-template-columns: 1fr; }
+
+    /* Footer bottom */
+    .site-footer__bottom .container {
+        flex-direction: column;
+        align-items:    flex-start;
+    }
+
+    /* Card padding reduction */
+    .card { padding: var(--spacing-lg); }
+
+    /* Timeline */
+    .experience-timeline { padding-left: 1.5rem; }
+    .timeline-item__dot  { left: calc(-1.5rem); width: 12px; height: 12px; }
+    .experience-timeline::before { left: calc(0.5rem - 1px); }
+
+    /* Section header */
+    .section-header { margin-bottom: var(--spacing-xl); }
+}
+
+/* ------------------------------------------------------------------
+   Print styles
+------------------------------------------------------------------ */
+@media print {
+    .site-header,
+    .site-footer,
+    .hero__orb,
+    .hero__scroll-indicator,
+    .skip-link { display: none !important; }
+
+    body {
+        background: #fff;
+        color: #000;
+    }
+
+    .site-main { padding-top: 0; }
+
+    a { color: #000; }
+}

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#12121a"/>
+  <rect x="1" y="1" width="798" height="448" fill="none" stroke="rgba(108,99,255,0.3)" stroke-width="1"/>
+  <!-- Image icon -->
+  <g transform="translate(340,170)">
+    <rect width="120" height="90" rx="8" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+    <circle cx="38" cy="30" r="12" fill="rgba(108,99,255,0.4)"/>
+    <polyline points="0,60 30,35 55,55 80,38 120,65 120,90 0,90" fill="rgba(108,99,255,0.15)"/>
+  </g>
+  <text x="400" y="295" font-family="Inter,system-ui,sans-serif" font-size="14" fill="rgba(255,255,255,0.3)" text-anchor="middle">Project Screenshot</text>
+  <text x="400" y="318" font-family="'Fira Code',monospace" font-size="11" fill="rgba(108,99,255,0.5)" text-anchor="middle">800 × 450</text>
+</svg>

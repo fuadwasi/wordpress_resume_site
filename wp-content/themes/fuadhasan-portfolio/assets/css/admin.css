@@ -1,0 +1,15 @@
+/* ==========================================================================
+   admin.css — WordPress admin-side styles for the portfolio theme
+   Loaded only on ACF options pages (see inc/enqueue.php).
+   ========================================================================== */
+
+/* Subtle accent colour for field group labels */
+.acf-field-group .acf-field > .acf-label label {
+    color: #6c63ff;
+    font-weight: 600;
+}
+
+/* Make options-page notices friendlier */
+.acf-admin-notice {
+    border-left-color: #6c63ff !important;
+}
