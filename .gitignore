@@ -47,3 +47,9 @@ wp-config.php
 # uncomment the next line
 #/wp-content/themes
 .vs/*
+
+# Local environment file (contains DB credentials)
+.env
+
+# Docker volumes / data
+docker-data/
